@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakup OS v2.0 | Survival Interface</title>
+</head>
+<body>
+  <header>
+    <h1>💔 Breakup OS v2.0</h1>
+    <button id="mobile-menu-btn">☰</button>
+  </header>
+
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h1>💔 Breakup OS <span style="font-size: 0.75rem; color: var(--color-stone-400); font-weight: normal;">v2.0</span></h1>
+      <p>System Status: <span id="system-status-text">Healing...</span></p>
+    </div>
+
+    <div class="sidebar-nav">
+      <button onclick="switchTab('tab-update')" class="nav-btn active">
+        <span>🔄</span> 1. System Update
+      </button>
+      <button onclick="switchTab('tab-detox')" class="nav-btn">
+        <span>🛡️</span> 2. Firewall / Detox
+      </button>
+      <button onclick="switchTab('tab-energy')" class="nav-btn">
+        <span>⚡</span> 3. Energy Monitor
+      </button>
+      <button onclick="switchTab('tab-narrative')" class="nav-btn">
+        <span>📝</span> 4. Debug Log
+      </button>
+      <button onclick="switchTab('tab-prize')" class="nav-btn">
+        <span>🏆</span> 5. Main Character
+      </button>
+    </div>
+
+    <div class="sidebar-mood">
+      <label>Current Vibe</label>
+      <input type="range" id="mood-slider" min="0" max="100" value="20">
+      <div class="mood-labels">
+        <span>Rotting</span>
+        <span>Thriving</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Tab 1: System Update -->
+    <section id="tab-update" class="active">
+      <div class="card">
+        <h2>Step 1: Accept the "Software Update" 🔄</h2>
+        <p>Think of this breakup like a mandatory OS update. It's annoying, it glitches, and your system feels slow. But the patch is necessary to fix bugs and improve security. Do not force a restart—let the loading bar fill up.</p>
+
+        <div class="progress-section">
+          <div class="progress-header">
+            <span>Installation Progress</span>
+            <span id="progress-text">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill" style="width: 5%"></div>
+          </div>
+          <div class="progress-status">Update Status: <span id="status-msg">Installing Grief Drivers...</span></div>
+        </div>
+
+        <h3 style="margin-bottom: 1rem;">The "Rot Era" Checklist</h3>
+        <p style="font-size: 0.875rem; color: var(--color-stone-500); margin-bottom: 1rem;">It is okay to do nothing. Tick these off to prove you are surviving.</p>
+
+        <div class="checklist">
+          <label>
+            <input type="checkbox" class="rot-check" onchange="updateProgress()">
+            <span>Ate cereal for dinner</span>
+          </label>
+          <label>
+            <input type="checkbox" class="rot-check" onchange="updateProgress()">
+            <span>Watched same show x10</span>
+          </label>
+          <label>
+            <input type="checkbox" class="rot-check" onchange="updateProgress()">
+            <span>Cried in the shower</span>
+          </label>
+          <label>
+            <input type="checkbox" class="rot-check" onchange="updateProgress()">
+            <span>Drank water today</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Digital Detox -->
+    <section id="tab-detox">
+      <div class="card">
+        <h2>Step 2: Firewall Settings (Detox) 🛡️</h2>
+        <p>You cannot heal in the same environment that infected you. Checking their stories is a security breach. Activate your firewall now.</p>
+
+        <div class="grid-2">
+          <div class="stat-card">
+            <h3>No-Contact Streak</h3>
+            <div class="streak-display">
+              <button onclick="adjustDays(-1)" class="streak-btn">-</button>
+              <span id="streak-days" class="streak-days">0</span>
+              <button onclick="adjustDays(1)" class="streak-btn">+</button>
+            </div>
+            <p style="color: var(--color-stone-600); font-weight: 500; margin-bottom: 0;">Days without a text</p>
+            <p id="streak-msg" class="streak-msg">Even 1 hour counts. Keep going.</p>
+            <button onclick="resetStreak()" class="reset-btn">Reset Streak (It happens)</button>
+          </div>
+
+          <div class="stat-card">
+            <h3>Revoke Access</h3>
+            <div class="permissions-list">
+              <div class="permission-item">
+                <span><span style="font-size: 1.25rem;">📸</span> Instagram</span>
+                <button onclick="toggleBlock(this)" class="permission-btn active">Following</button>
+              </div>
+              <div class="permission-item">
+                <span><span style="font-size: 1.25rem;">🎵</span> TikTok</span>
+                <button onclick="toggleBlock(this)" class="permission-btn active">Following</button>
+              </div>
+              <div class="permission-item">
+                <span><span style="font-size: 1.25rem;">📱</span> Number</span>
+                <button onclick="toggleBlock(this)" class="permission-btn active">Saved</button>
+              </div>
+            </div>
+            <p class="permissions-note">*Simulation only. Go do it on your real phone.*</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Energy Redirect -->
+    <section id="tab-energy">
+      <div class="card">
+        <h2>Step 3: Redirect Energy ⚡</h2>
+        <p>A breakup creates a massive surplus of emotional energy. If you don't use it, it turns into anxiety. Reallocate your resources below.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+          <div style="width: 100%; max-width: 500px;">
+            <div class="chart-container">
+              <canvas id="energyChart"></canvas>
+            </div>
+          </div>
+
+          <div style="width: 100%;">
+            <h3 style="margin-bottom: 1rem;">Available Actions</h3>
+            <p style="font-size: 0.875rem; color: var(--color-stone-500); margin-bottom: 1rem;">Click to move energy from "Obsessing" to productive sectors.</p>
+
+            <div class="energy-actions">
+              <button onclick="reallocateEnergy('gym')" class="action-btn gym">
+                <span class="action-btn-icon">🏋️‍♂️</span>
+                <span class="action-btn-title">Hit the Gym</span>
+                <span class="action-btn-subtitle">+ Endorphins</span>
+              </button>
+              <button onclick="reallocateEnergy('hobby')" class="action-btn hobby">
+                <span class="action-btn-icon">🧶</span>
+                <span class="action-btn-title">New Hobby</span>
+                <span class="action-btn-subtitle">+ Skill Gain</span>
+              </button>
+              <button onclick="reallocateEnergy('friends')" class="action-btn friends">
+                <span class="action-btn-icon">👯‍♂️</span>
+                <span class="action-btn-title">Bestie Pivot</span>
+                <span class="action-btn-subtitle">+ Support</span>
+              </button>
+              <button onclick="reallocateEnergy('skin')" class="action-btn skin">
+                <span class="action-btn-icon">🧴</span>
+                <span class="action-btn-title">Skincare</span>
+                <span class="action-btn-subtitle">+ Glow Up</span>
+              </button>
+            </div>
+            <button onclick="resetChart()" class="reset-chart-btn">Reset Simulation</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Narrative Rewrite -->
+    <section id="tab-narrative">
+      <div class="card">
+        <h2>Step 4: Re-Write the Narrative ✍️</h2>
+        <p>Memory has a "Pink Tint" filter. You remember the sunset dates but forget the waiting. Use the tool below to debug your memory logs.</p>
+
+        <div class="narrative-grid">
+          <div class="memory-card pink">
+            <div class="memory-card-icon">💭</div>
+            <h3>The "Pink Tint" Memory</h3>
+            <p id="pink-text">"We were so perfect together, they just got scared..."</p>
+            <div class="memory-card-status">Status: Delusional</div>
+          </div>
+
+          <div class="memory-card dark">
+            <div class="memory-card-icon">⚠️</div>
+            <h3>The System Log (Reality)</h3>
+            <div id="reality-content">
+              <button onclick="revealTruth()" class="reality-btn">Click to Run Diagnostics</button>
+            </div>
+            <div class="memory-card-status">Status: Accurate</div>
+          </div>
+        </div>
+
+        <div class="warning-banner">
+          <p><strong>Pro Tip:</strong> Open your Notes app right now. Create a list titled "Why It Didn't Work." Read it every time you want to text them at 2 AM.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 5: The Prize -->
+    <section id="tab-prize">
+      <div class="card prize-section">
+        <div class="prize-icon">🏆</div>
+        <h2>You Are The Prize</h2>
+        <p>The breakup wasn't a rejection; it was a redirection. You aren't starting over from scratch, you're starting from experience.</p>
+
+        <div class="affirmation-card">
+          <div class="affirmation-inner">
+            <div class="affirmation-label">Main Character Energy</div>
+            <p id="affirmation-text" class="affirmation-text">
+              "My value doesn't drop just because someone didn't know how to appreciate the investment."
+            </p>
+            <div style="margin-top: 1.5rem; flex: 1; display: flex; justify-content: center;">
+              <button onclick="newAffirmation()" class="affirmation-btn">
+                <span>✨</span> Generate New Mantra
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="completion-msg">
+          <p>System reboot complete. Welcome to Version 2.0.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
