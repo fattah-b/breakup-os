@@ -1,6 +1,8 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
 
 const navItems = [
   { id: "tab-update", label: "1. System Update", icon: "\u{1F504}" },
@@ -35,6 +37,13 @@ export function Sidebar({
   onClose,
 }: SidebarProps) {
   const mood = getMoodLabel(moodValue)
+  const router = useRouter()
+
+  async function handleSignOut() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    router.push("/auth/login")
+  }
 
   return (
     <nav
@@ -72,6 +81,15 @@ export function Sidebar({
             <span>{item.icon}</span> {item.label}
           </button>
         ))}
+      </div>
+
+      <div className="p-4 border-t border-border">
+        <button
+          onClick={handleSignOut}
+          className="w-full rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+        >
+          Sign Out
+        </button>
       </div>
 
       <div className="p-4 bg-secondary border-t border-border">
