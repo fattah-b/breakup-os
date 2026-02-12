@@ -24,7 +24,11 @@ export default function LoginPage() {
     })
 
     if (error) {
-      setError(error.message)
+      if (error.message === "Invalid login credentials") {
+        setError("Account does not exist. Please sign up.")
+      } else {
+        setError(error.message)
+      }
       setLoading(false)
     } else {
       router.push("/dashboard")
