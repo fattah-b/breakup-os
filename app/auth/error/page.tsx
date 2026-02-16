@@ -2,9 +2,9 @@ import Link from "next/link"
 
 export default function AuthErrorPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#1a1815] px-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md space-y-6 text-center">
-        <div className="rounded-2xl border border-[#2a2520] bg-[#211e1a] p-8">
+        <div className="rounded-2xl border border-border bg-card p-8">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-900/20">
             <svg
               className="h-8 w-8 text-red-400"
@@ -20,15 +20,15 @@ export default function AuthErrorPage() {
               />
             </svg>
           </div>
-          <h1 className="text-2xl font-bold text-[#e8dfd5]">
+          <h1 className="text-2xl font-bold text-foreground">
             Something went wrong
           </h1>
-          <p className="mt-3 text-sm leading-relaxed text-[#a89a8c]">
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             There was an error during authentication. Please try again.
           </p>
           <Link
             href="/auth/login"
-            className="mt-6 inline-block rounded-lg bg-[#c9a87c] px-6 py-3 text-sm font-semibold text-[#1a1815] transition-colors hover:bg-[#d4b88a]"
+            className="mt-6 inline-block rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Back to Login
           </Link>

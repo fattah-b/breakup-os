@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
+import { NeonBeam } from "@/components/neon-beam"
 import "./globals.css"
 
 const inter = Inter({
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#be123c",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
 }
@@ -26,8 +27,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+        <NeonBeam />
+        <div className="relative" style={{ zIndex: 1 }}>
+          {children}
+        </div>
       </body>
     </html>
   )

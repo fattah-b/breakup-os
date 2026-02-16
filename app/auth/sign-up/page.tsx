@@ -50,20 +50,20 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#1a1815] px-4">
+    <div className="flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-[#e8dfd5]">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
             BreakupOS
           </h1>
-          <p className="mt-2 text-sm text-[#a89a8c]">
+          <p className="mt-2 text-sm text-muted-foreground">
             Create your account. Start your healing journey.
           </p>
         </div>
 
         <form
           onSubmit={handleSignUp}
-          className="space-y-5 rounded-2xl border border-[#2a2520] bg-[#211e1a] p-8"
+          className="space-y-5 rounded-2xl border border-border bg-card p-8"
         >
           {error && (
             <div className="rounded-lg border border-red-800/50 bg-red-900/20 p-3 text-sm text-red-300">
@@ -74,7 +74,7 @@ export default function SignUpPage() {
           <div className="space-y-2">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-[#c4b8ab]"
+              className="block text-sm font-medium text-muted-foreground"
             >
               Email
             </label>
@@ -85,14 +85,14 @@ export default function SignUpPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full rounded-lg border border-[#3a342d] bg-[#1a1815] px-4 py-3 text-[#e8dfd5] placeholder-[#6b5f53] outline-none transition-colors focus:border-[#c9a87c] focus:ring-1 focus:ring-[#c9a87c]"
+              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
 
           <div className="space-y-2">
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-[#c4b8ab]"
+              className="block text-sm font-medium text-muted-foreground"
             >
               Password
             </label>
@@ -103,14 +103,14 @@ export default function SignUpPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="At least 6 characters"
-              className="w-full rounded-lg border border-[#3a342d] bg-[#1a1815] px-4 py-3 text-[#e8dfd5] placeholder-[#6b5f53] outline-none transition-colors focus:border-[#c9a87c] focus:ring-1 focus:ring-[#c9a87c]"
+              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
 
           <div className="space-y-2">
             <label
               htmlFor="confirm-password"
-              className="block text-sm font-medium text-[#c4b8ab]"
+              className="block text-sm font-medium text-muted-foreground"
             >
               Confirm Password
             </label>
@@ -121,23 +121,23 @@ export default function SignUpPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               placeholder="Confirm your password"
-              className="w-full rounded-lg border border-[#3a342d] bg-[#1a1815] px-4 py-3 text-[#e8dfd5] placeholder-[#6b5f53] outline-none transition-colors focus:border-[#c9a87c] focus:ring-1 focus:ring-[#c9a87c]"
+              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-[#c9a87c] px-4 py-3 text-sm font-semibold text-[#1a1815] transition-colors hover:bg-[#d4b88a] disabled:opacity-50"
+            className="w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
           >
             {loading ? "Creating account..." : "Sign Up"}
           </button>
 
-          <p className="text-center text-sm text-[#a89a8c]">
+          <p className="text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link
               href="/auth/login"
-              className="font-medium text-[#c9a87c] hover:underline"
+              className="font-medium text-primary hover:underline"
             >
               Log in
             </Link>
