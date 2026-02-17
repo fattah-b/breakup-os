@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { NeonBeam } from "@/components/neon-beam"
+import { NotificationShell } from "@/components/notifications/notification-shell"
 import "./globals.css"
 
 const inter = Inter({
@@ -29,9 +30,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
         <NeonBeam />
-        <div className="relative" style={{ zIndex: 1 }}>
-          {children}
-        </div>
+        <NotificationShell>
+          <div className="relative" style={{ zIndex: 1 }}>
+            {children}
+          </div>
+        </NotificationShell>
       </body>
     </html>
   )
