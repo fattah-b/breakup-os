@@ -4,6 +4,7 @@ import { useState } from "react"
 import { createClient } from "@/lib/supabase/client"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { InteractiveCard } from "@/components/interactive-card"
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("")
@@ -61,7 +62,8 @@ export default function SignUpPage() {
           </p>
         </div>
 
-        <form
+        <InteractiveCard
+          as="form"
           onSubmit={handleSignUp}
           className="space-y-5 rounded-2xl border border-border bg-card p-8"
         >
@@ -142,7 +144,7 @@ export default function SignUpPage() {
               Log in
             </Link>
           </p>
-        </form>
+        </InteractiveCard>
       </div>
     </div>
   )
